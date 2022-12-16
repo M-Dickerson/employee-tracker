@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS classlist_db;
-CREATE DATABASE classlist_db;
+DROP DATABASE IF EXISTS employee_roster;
+CREATE DATABASE employee_roster;
 
-USE classlist_db;
+USE employee_roster;
 
 CREATE TABLE department (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,

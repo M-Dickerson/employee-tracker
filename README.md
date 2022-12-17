@@ -17,10 +17,10 @@ MySQL 2, Console.table, and Inquirer are required
 
 ## Usage
 
-Demo video:
+Demo video: [here](https://drive.google.com/file/d/18fMzGA0lLJwQp5nxECriJ5OYLS9iRYag/view)
 
 
-![alt text](assets/images/screenshot.png)
+![alt text](./assets/screenshot.png)
 
 
 ## Credits

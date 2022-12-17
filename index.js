@@ -1,8 +1,8 @@
 // links
-const inquirer = require("inquirer");
+const inquirer = require('inquirer');
 const mysql = require('mysql2');
 const consoleTable = ('console.table');
-// database
+// connection to schema database
 const database = mysql.createConnection(
   {
     host: 'localhost',
@@ -36,11 +36,11 @@ function questionSection() {
                     }
                 });
                 setTimeout(() => {
-                    console.log(`-------------------------------------------`);
+                    console.log(`Here is a list of all current employees`);
                     questionSection();
                 }, 5);
               break;
-            // adds an employee
+            // adds a new employee
             case "Add An Employee":
                 addEmployee();
                 break;
@@ -48,7 +48,7 @@ function questionSection() {
             case "Update an Employee Role":
                 updateEmployee();
                 break;
-            // views all roles
+            // lists all current roles
             case "View All Roles":
                 console.clear();
                 database.query('SELECT role.id AS ID, title AS Title, name AS Department, salary AS Salary FROM role JOIN department ON department.id = department_id', function (err, results) {
@@ -60,15 +60,15 @@ function questionSection() {
                     }
                 });
                 setTimeout(() => {
-                    console.log(`-------------------------------------------`);
+                    console.log(`Here is a list of current roles`);
                     questionSection();
                 }, 5);
                 break;
-            // adds role
+            // adds a new role
             case "Add A Role":
                 addRole();
                 break;
-            // view
+            // lists all current departments
             case "View All Departments":
                 console.clear();
                 database.query('SELECT department.id AS ID, name AS Department FROM department', function (err, results) {
@@ -80,14 +80,15 @@ function questionSection() {
                     }
             });
             setTimeout(() => {
-                console.log(`-------------------------------------------`);
+                console.log(`Here is a list of current departments`);
                 questionSection();
             }, 5);
             break;
-            // 
+            // adds a new department
             case "Add A Department":
                 addDepartment();
                 break;
+            // lets the user exit the app
             case "Exit":
                 console.clear();
                 console.log(`Done`);
@@ -95,20 +96,20 @@ function questionSection() {
             }
         });
 };
-// updates the selected employees role
+// lets the user update the selected employees role
 function updateEmployee() {
     database.query('SELECT * FROM employee', (err, results) => {
         if (err) {console.log(err);}
         return inquirer.prompt([
         {
-            type: 'rawlist',
+            type: 'list',
             name: 'update',
             choices: function () {
-                var choiceArr = []
+                var emptyArray = []
                 for (let i = 0; i < results.length; i++) {
-                    choiceArr.push(results[i].last_name)
+                    emptyArray.push(results[i].last_name)
                 }
-                return choiceArr;
+                return emptyArray;
             },
             message: `Which employee do you want to update?`
         },
@@ -134,6 +135,7 @@ function updateEmployee() {
             });
     });
 };
+// lets the user add a new department
 function addDepartment() {
     return inquirer.prompt([
         {
@@ -155,7 +157,7 @@ function addDepartment() {
             }, 5);
         });
 };
-//add role prompts
+// lets the user add a new role and a new salary for that role
 function addRole() {
     database.query("SELECT * FROM department", (err, results) => {
         if (err) {
@@ -173,28 +175,28 @@ function addRole() {
                 name: 'roleSalary',
             },
             {
-                type: 'rawlist',
+                type: 'list',
                 name: 'department',
                 choices: function () {
-                    var choiceArr = []
+                    var emptyArray = []
                     for (let i = 0; i < results.length; i++) {
-                        choiceArr.push(
+                        emptyArray.push(
                             {
                                 name: results[i].name,
                                 value: results[i].id,
                             })
                     }
-                    return choiceArr;
+                    return emptyArray;
                 },
                 message: "Select Department:"
             }
         ])
             .then(response => {
-                roleAnswerArray = []
-                roleAnswerArray.push(response.roleName)
-                roleAnswerArray.push(JSON.parse(response.roleSalary))
-                roleAnswerArray.push(response.department)
-                database.query(`INSERT INTO role (title, salary, department_ID) VALUES (?,?,?)`, roleAnswerArray, (err, result) => {
+                roleArray = []
+                roleArray.push(response.roleName)
+                roleArray.push(JSON.parse(response.roleSalary))
+                roleArray.push(response.department)
+                database.query(`INSERT INTO role (title, salary, department_ID) VALUES (?,?,?)`, roleArray, (err, result) => {
                     if (err) {
                         console.log(err);
                     }
@@ -206,8 +208,7 @@ function addRole() {
             })
     });
 };
-
-//add employee prompts
+// lets the user add a new employee
 function addEmployee() {
     database.query('SELECT * FROM role', (err, results) => {
         if (err) {console.log(err);}
@@ -223,17 +224,17 @@ function addEmployee() {
                 name: 'lastName',
             },
             {
-                type: 'rawlist',
+                type: 'list',
                 name: 'role',
                 choices: function () {
-                    var choiceArr = []
+                    var emptyArray = []
                     for (let i = 0; i < results.length; i++) {
-                        choiceArr.push({
+                        emptyArray.push({
                             name: results[i].title,
                             value: results[i].id,
                         })
                     }
-                    return choiceArr;
+                    return emptyArray;
                 },
                 message: "select role"
             },
@@ -250,12 +251,12 @@ function addEmployee() {
             },
         ])
             .then(response => {
-                empAnswerArray = []
-                empAnswerArray.push(response.firstName)
-                empAnswerArray.push(response.lastName)
-                empAnswerArray.push(response.role)
-                empAnswerArray.push(response.manager)
-                database.query(`INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?,?,?,?)`, empAnswerArray, (err, result) => {
+                employeeArray = []
+                employeeArray.push(response.firstName)
+                employeeArray.push(response.lastName)
+                employeeArray.push(response.role)
+                employeeArray.push(response.manager)
+                database.query(`INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?,?,?,?)`, employeeArray, (err, result) => {
                     if (err) {
                         console.log(err);
                     }
@@ -267,5 +268,5 @@ function addEmployee() {
             })
     });
 };
-//
+// runs the application
 questionSection();

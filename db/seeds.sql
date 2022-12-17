@@ -4,7 +4,8 @@ VALUES ("Raven"),
        ("Libra"),
        ("Adjudicator"),
        ("King"),
-       ("MC");
+       ("Attorney"),
+       ("SCPD");
 -- a list of the employees roles, their saleries, and their department IDs
 INSERT INTO role (title, salary, department_id)
 VALUES ("Private Detective", 100000, 1),
@@ -16,7 +17,7 @@ VALUES ("Private Detective", 100000, 1),
 INSERT INTO manager (manager_name)
 VALUES ("NSB"),
        ("Celestine"),
-       ("Giann"),
+       ("Himself"),
        ("Austin"),
        ("Artem");
 -- a list of employees names, their role IDs, and their manager IDs
@@ -25,5 +26,7 @@ VALUES ("Luke", "Pearce", 1, 1),
        ("Artem", "Wing", 2, 2),
        ("Vyn", "Richter", 3, 3),
        ("Marius", "Von-Hagen", 4, 4),
-       ("Rosa", "Clemmings", 5, 5);
-
+       ("Rosa", "Pearce", 5, 5),
+       ("Kiki", "Bennett", 5, 5),
+       ("Darius", "Morgan", 6, 1),
+       ("Aaron", "Yishmir", 1, 1);

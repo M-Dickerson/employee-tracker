@@ -241,7 +241,7 @@ function addEmployee() {
             {
                 type: 'list',
                 message: `Who is their Manager?`,
-                choices: ["NSB", "Celestine", "Himself", "Austin", "Artem"],
+                choices: ['NSB', 'Celestine', 'Himself', 'Austin', 'Artem'],
                 name: 'manager',
             },
         ])

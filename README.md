@@ -2,12 +2,7 @@
 
 ## Description
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
-
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
+The motivation and purpose behind this project was to create an app that can be use to keep track of employees. It solves the issue of not having a database the keeps tabs of employees managers, salaries, their names, and their IDs. I learned a lot about linking databases, as well as having to source the schema and seeds files for any changes to apply.
 
 ## Table of Contents
 
@@ -22,9 +17,7 @@ MySQL 2, Console.table, and Inquirer are required
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
-
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
+Demo video:
 
 
 ![alt text](assets/images/screenshot.png)

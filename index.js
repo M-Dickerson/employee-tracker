@@ -239,10 +239,15 @@ function addEmployee() {
                 message: "select role"
             },
             {
-                type: 'list',
-                message: `Who is their Manager?`,
-                choices: ['NSB', 'Celestine', 'Himself', 'Austin', 'Artem'],
-                name: 'manager',
+                type: 'input',
+                message: `Who is their Manager?,
+        1. NSB
+        2. Celestine 
+        3. Giann
+        4. Austin
+        5.Artem
+        Enter the number of the employees manager:`,
+        name: 'manager',
             },
         ])
             .then(response => {

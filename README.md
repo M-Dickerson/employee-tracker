@@ -2,7 +2,7 @@
 
 ## Description
 
-The motivation and purpose behind this project was to create an app that can be use to keep track of employees. It solves the issue of not having a database the keeps tabs of employees managers, salaries, their names, and their IDs. I learned a lot about linking databases, as well as having to source the schema and seeds files for any changes to apply.
+The motivation and purpose behind this project was to create an app that can be used to keep track of employees. It solves the issue of not having a database the keeps tabs of employees managers, salaries, their names, and their IDs. I learned a lot about linking databases, as well as having to source the schema and seeds files for any changes to apply.
 
 ## Table of Contents
 
